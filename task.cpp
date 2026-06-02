@@ -1,12 +1,12 @@
 #include <iostream>
-#include <cmath> // Для std::sqrt в первом задании
+#include <cmath>
 
 int main() {
     // Настройка вывода русского языка в консоли
     setlocale(LC_ALL, "Russian");
 
     int choice;
-    std::cout << "=== ГЛАВНОЕ МЕНЮ ===" << std::endl;
+    std::cout << "ГЛАВНОЕ МЕНЮ" << std::endl;
     std::cout << "1. Найти второй катет треугольника" << std::endl;
     std::cout << "2. Расчет стоимости поездки на дачу" << std::endl;
     std::cout << "3. Тест: дата основания Санкт-Петербурга" << std::endl;
@@ -45,7 +45,7 @@ int main() {
             std::cout << "Введите цену одного литра бензина: ";
             std::cin >> price;
 
-            // Валидация: все экономические и физические параметры должны быть строго положительными
+            
             if (distance <= 0 || consumption <= 0 || price <= 0) {
                 std::cout << "Ошибка ввода данных: все параметры должны быть больше нуля!" << std::endl;
             } else {
