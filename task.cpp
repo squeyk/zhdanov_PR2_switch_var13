@@ -1,18 +1,17 @@
 #include <iostream>
-#include <cmath>
+#include <cmath> // Dlya std::sqrt v pervom zadanii
 
 int main() {
-    // Настройка вывода русского языка в консоли
-    setlocale(LC_ALL, "Russian");
+    // Ne ispolzuem setlocale, tak kak tekst vyveden latinicey
 
     int choice;
-    std::cout << "ГЛАВНОЕ МЕНЮ" << std::endl;
-    std::cout << "1. Найти второй катет треугольника" << std::endl;
-    std::cout << "2. Расчет стоимости поездки на дачу" << std::endl;
-    std::cout << "3. Тест: дата основания Санкт-Петербурга" << std::endl;
-    std::cout << "4. Проверка попадания точки в область" << std::endl;
-    std::cout << "5. Перевод математического знака в текст" << std::endl;
-    std::cout << "Введите номер задания (1-5): ";
+    std::cout << "=== GLAVNOE MENU ===" << std::endl;
+    std::cout << "1. Nayti vtoroy katet treugolnika" << std::endl;
+    std::cout << "2. Raschet stoimosti poezdki na dachu" << std::endl;
+    std::cout << "3. Test: data osnovaniya Sankt-Peterburga" << std::endl;
+    std::cout << "4. Proverka popadaniya tochki v oblast" << std::endl;
+    std::cout << "5. Perevod matematicheskogo znaka v tekst" << std::endl;
+    std::cout << "Vvedite nomer zadaniya (1-5): ";
     std::cin >> choice;
 
     std::cout << "-----------------------------------" << std::endl;
@@ -20,103 +19,101 @@ int main() {
     switch (choice) {
         case 1: {
             double c, a;
-            std::cout << "Введите гипотенузу: ";
+            std::cout << "Vvedite gipotenuza: ";
             std::cin >> c;
-            std::cout << "Введите известный катет: ";
+            std::cout << "Vvedite izvestniy katet: ";
             std::cin >> a;
 
-            
+            // Validaciya: storony > 0 i gipotenuza > katet
             if (c <= 0 || a <= 0) {
-                std::cout << "Ошибка ввода данных: длины сторон должны быть больше нуля!" << std::endl;
+                std::cout << "Oshibka vvoda: dliny storon dolzhny byt bolshe nulya!" << std::endl;
             } else if (c <= a) {
-                std::cout << "Ошибка ввода данных: гипотенуза должна быть строго больше катета!" << std::endl;
+                std::cout << "Oshibka vvoda: gipotenuza dolzhna byt strogo bolshe kateta!" << std::endl;
             } else {
                 double b = std::sqrt(c * c - a * a);
-                std::cout << "Второй катет равен: " << b << std::endl;
+                std::cout << "Vtoroy katet raven: " << b << std::endl;
             }
             break;
         }
         case 2: {
             double distance, consumption, price;
-            std::cout << "Введите расстояние до дачи (км): ";
+            std::cout << "Vvedite rasstoyanie do dachi (km): ";
             std::cin >> distance;
-            std::cout << "Введите расход бензина (л на 100 км пробега): ";
+            std::cout << "Vvedite rashod benzina (l na 100 km): ";
             std::cin >> consumption;
-            std::cout << "Введите цену одного литра бензина: ";
+            std::cout << "Vvedite cenu odnogo litra benzina: ";
             std::cin >> price;
 
-            
+            // Validaciya: vse parametry dolzhny byt polozhitelnymi
             if (distance <= 0 || consumption <= 0 || price <= 0) {
-                std::cout << "Ошибка ввода данных: все параметры должны быть больше нуля!" << std::endl;
+                std::cout << "Oshibka vvoda: vse parametry dolzhny byt bolshe nulya!" << std::endl;
             } else {
                 double total_distance = distance * 2;
                 double total_liters = (total_distance * consumption) / 100.0;
                 double total_cost = total_liters * price;
-                std::cout << "Стоимость поездки на дачу составит: " << total_cost << " руб." << std::endl;
+                std::cout << "Stoimost poezdki sostavit: " << total_cost << " rub." << std::endl;
             }
             break;
         }
         case 3: {
             int answer;
-            std::cout << "В каком году был основан Санкт-Петербург? ";
+            std::cout << "V kakom godu byl osnovan Sankt-Peterburg? ";
             std::cin >> answer;
 
-            // Валидация и проверка ответа
             if (answer <= 0) {
-                std::cout << "Ошибка ввода данных: год не может быть отрицательным или нулевым!" << std::endl;
+                std::cout << "Oshibka vvoda: god dolzhen byt bolshe nulya!" << std::endl;
             } else if (answer == 1703) {
-                std::cout << "Вы ответили правильно" << std::endl;
+                std::cout << "Vy otvetili pravilno" << std::endl;
             } else {
-                std::cout << "Неверно. Правильный ответ: 1703 год." << std::endl;
+                std::cout << "Neverno. Pravilniy otvet: 1703 god." << std::endl;
             }
             break;
         }
         case 4: {
             double x, y, r;
-            std::cout << "Введите координату X: ";
+            std::cout << "Vvedite koordinatu X: ";
             std::cin >> x;
-            std::cout << "Введите координату Y: ";
+            std::cout << "Vvedite koordinatu Y: ";
             std::cin >> y;
-            std::cout << "Введите радиус R: ";
+            std::cout << "Vvedite radius R: ";
             std::cin >> r;
 
-            // Валидация: геометрический радиус не может быть отрицательным или нулевым
+            // Validaciya: radius dolzhen byt strogo polozhitelnym
             if (r <= 0) {
-                std::cout << "Ошибка ввода данных: радиус должен быть больше нуля!" << std::endl;
+                std::cout << "Oshibka vvoda: radius dolzhen byt bolshe nulya!" << std::endl;
             } else if (x * x + y * y <= r * r) {
-                std::cout << "Точка принадлежит заштрихованной части плоскости." << std::endl;
+                std::cout << "Tochka prinadlezhit zashtrihovannoy oblasti." << std::endl;
             } else {
-                std::cout << "Точка НЕ принадлежит заштрихованной части плоскости." << std::endl;
+                std::cout << "Tochka NE prinadlezhit zashtrihovannoy oblasti." << std::endl;
             }
             break;
         }
         case 5: {
             char op;
-            std::cout << "Введите символьное обозначение операции (+, -, *, /): ";
+            std::cout << "Vvedite simvol operacii (+, -, *, /): ";
             std::cin >> op;
 
-            // Валидация реализована через секцию default оператора switch
             switch (op) {
                 case '+':
-                    std::cout << "Сложение" << std::endl;
+                    std::cout << "Slozhenie" << std::endl;
                     break;
                 case '-':
-                    std::cout << "Вычитание" << std::endl;
+                    std::cout << "Vychitanie" << std::endl;
                     break;
                 case '*':
-                    std::cout << "Умножение" << std::endl;
+                    std::cout << "Umnozhenie" << std::endl;
                     break;
                 case '/':
-                    std::cout << "Деление" << std::endl;
+                    std::cout << "Delenie" << std::endl;
                     break;
                 default:
-                    std::cout << "Ошибка ввода данных" << std::endl;
+                    std::cout << "Oshibka vvoda dannyh" << std::endl;
                     break;
             }
             break;
         }
         default:
-            std::cout << "Ошибка ввода данных: выбран несуществующий пункт меню!" << std::endl;
+            std::cout << "Oshibka vvoda: vybran nesushestvuyushiy punkt menu!" << std::endl;
             break;
     }
 
